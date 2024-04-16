@@ -24,5 +24,9 @@ class RestDay < ActiveRecord::Base
     def clear!
       @rest_days = nil
     end
+
+    def days
+      RequestStore[:redmine_work_days_RestDay_days] ||= RestDay.pluck(:day).to_set
+    end
   end
 end
